@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+}
+
+.navbar-brand img {
+    width: 100%;
+    max-width: 150px;
+}
+
+.toggle-cart {
+    cursor: pointer;
+}
+
+.offcanvas-header {
+    height: 104px;
+}
+
+.producto {
+    border: 1px solid #c7c7c7;
+    border-right: none;
+    border-bottom: none;
+}
+
+.producto:nth-last-of-type(-n + 4) {
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.producto-img-container {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.producto-img-container img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 40px 20px 20px;
+    left: 0;
+    top: 0;
+}
+
+.producto .card-body {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.producto h3 {
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.producto .product-price {
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+}
+
+.cart-item-info {
+    width: calc(100% - 125px);
+    padding: 30px 20px;
+}
+
+.cart-item-qty {
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 5px;
+}
+
+.cart-item h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.cart-item-price {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.cart-item-img {
+    width: 125px;
+    position: relative;
+    aspect-ratio: 1;
+}
+
+.cart-item-img img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.cart-item-qty-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart-item-qty-wrapper .item-total-price {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cantidad-menos,
+.cantidad-mas {
+    cursor: pointer;
+}
+
+.offcanvas-footer {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.offcanvas-footer h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.offcanvas-footer .cart-total {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.empty-state {
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+
+.offcanvas-title {
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
