@@ -1,3 +1,30 @@
+// POPUP
+// Mostrar popup a los 3 segundos
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    const clienteGuardado = localStorage.getItem("cliente");
+    if (!clienteGuardado) {
+      const userModal = document.getElementById("userModal");
+      userModal.classList.add("show");
+      userModal.style.display = "block";
+    }
+  }, 3000);
+
+  const userForm = document.getElementById("userForm");
+  userForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nombre = document.getElementById("nombreUsuario").value;
+    const email = document.getElementById("emailUsuario").value;
+
+    localStorage.setItem("cliente", JSON.stringify({ nombre, email }));
+
+    const userModal = document.getElementById("userModal");
+    userModal.classList.remove("show");
+    userModal.style.display = "none";
+  });
+});
+
 // PRODUCTOS
 
 // Traer los productos desde la API
@@ -21,7 +48,7 @@ fetch("https://fakestoreapi.com/products")
                 <h3 class="card-title">${producto.title}</h3>
                 <h4 class="product-price">$ ${producto.price}</h4>
             </div>
-            <button class="add-to-cart">Agregar</button>
+            <button class="add-to-cart">Añadir al carrito</button>
             `;
       const addToCartBtn = card.querySelector(".add-to-cart");
       addToCartBtn.addEventListener("click", () => {
@@ -66,6 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (carritoGuardado) {
     productosCarrito = JSON.parse(carritoGuardado);
     renderCarrito();
+  } else {
+    renderCarrito();
   }
 });
 
@@ -96,6 +125,7 @@ function addToCart(producto) {
 // Funcion para renderizar el carrito
 
 const cartBody = document.querySelector(".offcanvas-body");
+const checkoutBtn = document.querySelector("#goToCheckout");
 
 function renderCarrito() {
   let totalCarrito = 0;
@@ -103,6 +133,9 @@ function renderCarrito() {
 
   if (productosCarrito.length == 0) {
     cartBody.innerHTML = `<h3 class="empty-state">No hay articulos en el carrito</h3>`;
+    checkoutBtn.setAttribute("disabled", "true");
+  } else {
+    checkoutBtn.removeAttribute("disabled");
   }
 
   productosCarrito.forEach((item) => {
@@ -184,3 +217,52 @@ function aumentarCantidad(id) {
     guardarCarrito();
   }
 }
+
+// Ir al checkout
+
+const finishBtn = document.querySelector("#finishPurchase");
+
+checkoutBtn.addEventListener("click", () => {
+  cartBody.innerHTML = `
+    <form id="checkoutForm">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre y apellido</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electronico</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="direccion" required>
+        </div>
+    </form>
+  `;
+  checkoutBtn.style.display = "none";
+  finishBtn.style.display = "block";
+
+  const cliente = JSON.parse(localStorage.getItem("cliente") || "null");
+  if (cliente) {
+    document.getElementById("nombre").value = cliente.nombre || "";
+    document.getElementById("email").value = cliente.email || "";
+  }
+
+  // Finalizar compra
+  checkoutForm = document.querySelector("#checkoutForm");
+  checkoutForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Orden confirmada!",
+      text: "Te estaremos contactando en breve",
+      icon: "success",
+    });
+
+    productosCarrito = [];
+    localStorage.clear();
+    renderCarrito();
+
+    checkoutBtn.style.display = "block";
+    finishBtn.style.display = "none";
+  });
+});

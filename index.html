@@ -19,6 +19,7 @@
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
@@ -49,12 +50,64 @@
       <div class="offcanvas-footer bg-body-tertiary">
         <h3>Total</h3>
         <span class="cart-total">$0</span>
+
+        <button class="btn" id="goToCheckout">Continuar con el pago</button>
+        <button
+          class="btn"
+          id="finishPurchase"
+          form="checkoutForm"
+          style="display: none"
+        >
+          Finalizar compra
+        </button>
       </div>
     </div>
+
     <main>
       <section class="products-container container-fluid">
         <div class="row row-cols-4"></div>
       </section>
+      <div
+        class="modal fade"
+        id="userModal"
+        tabindex="-1"
+        aria-labelledby="userModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="userModalLabel">
+                Bienvenido. Ingresa tus datos por unica vez para facilitar tu
+                compra
+              </h5>
+            </div>
+            <div class="modal-body">
+              <form id="userForm">
+                <div class="mb-3">
+                  <label for="nombreUsuario" class="form-label">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nombreUsuario"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="emailUsuario" class="form-label">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="emailUsuario"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <footer></footer>
     <script src="./js/scripts.js"></script>

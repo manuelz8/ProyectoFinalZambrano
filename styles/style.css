@@ -19,6 +19,7 @@
     border: 1px solid #c7c7c7;
     border-right: none;
     border-bottom: none;
+    text-align: center;
 }
 
 .producto:nth-last-of-type(-n + 4) {
@@ -123,6 +124,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .offcanvas-footer h3 {
@@ -147,4 +149,28 @@
     font-weight: 600;
     font-size: 15px;
     text-transform: uppercase;
+}
+
+.btn {
+    background-color: black;
+    width: 100%;
+    padding: 10px 0px;
+    color: white;
+    font-size: 13px;
+    border-radius: 0;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: black;
+    color: #f3f3f3;
+}
+
+.add-to-cart {
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: underline;
 }
